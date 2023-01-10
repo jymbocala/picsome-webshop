@@ -12,7 +12,7 @@ function ContextProvider({ children }) {
       "https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json"
     )
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => setAllPhotos(data));
 
     // save the data to state
   }, []);
