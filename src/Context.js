@@ -33,10 +33,10 @@ function ContextProvider({ children }) {
   function addToCart(newItem) {
     setCartItems(prevCart => [...prevCart, newItem]);
   }
-  console.log(cartItems);
+  
 
   return (
-    <Context.Provider value={{ allPhotos, toggleFavorite, addToCart }}>
+    <Context.Provider value={{ allPhotos, toggleFavorite, addToCart, cartItems }}>
       {/* shorthad for obj container a property and value of "allPhotos" */}
       {children}
     </Context.Provider>

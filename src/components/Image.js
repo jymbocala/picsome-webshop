@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 function Image({ className, img }) {
   const [hover, setHover] = useState(false);
   // Get the toggleFavorite function from context
-  const { toggleFavorite, addToCart } = useContext(Context);
+  const { toggleFavorite, addToCart, cartItems } = useContext(Context);
 
   const heartIcon = img.isFavorite ? (
     <i
@@ -21,7 +21,19 @@ function Image({ className, img }) {
     )
   );
 
-  const cartIcon = hover && <i className="ri-add-circle-line cart" onClick={() => addToCart(img)}></i>;
+  function cartIcon() {
+    const isInCart = cartItems.find((item) => item.id === img.id);
+    if (isInCart) {
+      return <i className="ri-shopping-cart-fill cart"></i>;
+    } else if (hover) {
+      return (
+        <i
+          className="ri-add-circle-line cart"
+          onClick={() => addToCart(img)}
+        ></i>
+      );
+    }
+  }
 
   return (
     <div
@@ -30,7 +42,7 @@ function Image({ className, img }) {
       onMouseLeave={() => setHover(false)}
     >
       {heartIcon}
-      {cartIcon}
+      {cartIcon()}
       <img src={img.url} className="image-grid" />
     </div>
   );
@@ -41,7 +53,7 @@ Image.propTypes = {
   img: PropTypes.shape({
     id: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
-    isFavorite:PropTypes.bool
+    isFavorite: PropTypes.bool,
   }),
 };
 
