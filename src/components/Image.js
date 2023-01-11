@@ -1,17 +1,25 @@
 import React, { useState, useContext } from "react";
-import {Context} from "../Context";
-
-
+import { Context } from "../Context";
 
 export default function Image({ className, img }) {
   const [hover, setHover] = useState(false);
-  
   // Get the toggleFavorite function from context
   const { toggleFavorite } = useContext(Context);
 
-  const heartIcon = hover && (
-    <i className="ri-heart-line favorite" onClick={() => toggleFavorite(img.id)}></i>
+  const heartIcon = img.isFavorite ? (
+    <i
+      className="ri-heart-fill favorite"
+      onClick={() => toggleFavorite(img.id)}
+    ></i>
+  ) : (
+    hover && (
+      <i
+        className="ri-heart-line favorite"
+        onClick={() => toggleFavorite(img.id)}
+      ></i>
+    )
   );
+
   const cartIcon = hover && <i className="ri-add-circle-line cart"></i>;
 
   return (

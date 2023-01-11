@@ -19,8 +19,6 @@ function ContextProvider({ children }) {
     // rather than setting the allPhotos state directly (which is bad practice), create an updated array and return that
     const updatedArr = allPhotos.map((photo) => {
       if (id === photo.id) {
-        console.log(id)
-        console.log(!photo.isFavorite)
         return {
           ...photo,
           isFavorite: !photo.isFavorite,
