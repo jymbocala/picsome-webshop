@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 const Context = React.createContext();
 
 function ContextProvider({ children }) {
-  // children is destructured from props
   const [allPhotos, setAllPhotos] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     // get data from api
@@ -30,8 +30,13 @@ function ContextProvider({ children }) {
     setAllPhotos(updatedArr);
   }
 
+  function addToCart(newItem) {
+    setCartItems(prevCart => [...prevCart, newItem]);
+  }
+  console.log(cartItems);
+
   return (
-    <Context.Provider value={{ allPhotos, toggleFavorite }}>
+    <Context.Provider value={{ allPhotos, toggleFavorite, addToCart }}>
       {/* shorthad for obj container a property and value of "allPhotos" */}
       {children}
     </Context.Provider>
