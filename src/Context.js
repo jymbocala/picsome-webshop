@@ -31,12 +31,19 @@ function ContextProvider({ children }) {
   }
 
   function addToCart(newItem) {
-    setCartItems(prevCart => [...prevCart, newItem]);
+    setCartItems((prevCart) => [...prevCart, newItem]);
   }
+
   
+  function removeFromCart(id) {
+    // filters through the cart and returns an array with images that do not match the id passed in
+    setCartItems((prevCart) => prevCart.filter((item) => item.id === !id));
+  }
 
   return (
-    <Context.Provider value={{ allPhotos, toggleFavorite, addToCart, cartItems }}>
+    <Context.Provider
+      value={{ allPhotos, toggleFavorite, addToCart, removeFromCart, cartItems  }}
+    >
       {/* shorthad for obj container a property and value of "allPhotos" */}
       {children}
     </Context.Provider>

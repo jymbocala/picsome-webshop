@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 function Image({ className, img }) {
   const [hover, setHover] = useState(false);
   // Get the toggleFavorite function from context
-  const { toggleFavorite, addToCart, cartItems } = useContext(Context);
+  const { toggleFavorite, addToCart, removeFromCart, cartItems } = useContext(Context);
 
   const heartIcon = img.isFavorite ? (
     <i
@@ -24,7 +24,7 @@ function Image({ className, img }) {
   function cartIcon() {
     const isInCart = cartItems.find((item) => item.id === img.id);
     if (isInCart) {
-      return <i className="ri-shopping-cart-fill cart"></i>;
+      return <i className="ri-shopping-cart-fill cart" onClick={() => removeFromCart(img.id)}></i>;
     } else if (hover) {
       return (
         <i
@@ -34,6 +34,8 @@ function Image({ className, img }) {
       );
     }
   }
+
+  
 
   return (
     <div
