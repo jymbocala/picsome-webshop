@@ -31,10 +31,10 @@ function ContextProvider({ children }) {
   }
 
   function addToCart(newItem) {
+    // sets cart items array to an array that includes the previus cart items plus the new item passed through from Image.js
     setCartItems((prevCart) => [...prevCart, newItem]);
   }
 
-  
   function removeFromCart(id) {
     // filters through the cart and returns an array with images that do not match the id passed in
     setCartItems((prevCart) => prevCart.filter((item) => item.id === !id));
@@ -42,7 +42,13 @@ function ContextProvider({ children }) {
 
   return (
     <Context.Provider
-      value={{ allPhotos, toggleFavorite, addToCart, removeFromCart, cartItems  }}
+      value={{
+        allPhotos,
+        toggleFavorite,
+        addToCart,
+        removeFromCart,
+        cartItems,
+      }}
     >
       {/* shorthad for obj container a property and value of "allPhotos" */}
       {children}
