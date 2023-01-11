@@ -13,12 +13,27 @@ function ContextProvider({ children }) {
     )
       .then((res) => res.json())
       .then((data) => setAllPhotos(data));
-
-    // save the data to state
   }, []);
 
+  function toggleFavorite(id) {
+    // rather than setting the allPhotos state directly (which is bad practice), create an updated array and return that
+    const updatedArr = allPhotos.map((photo) => {
+      if (id === photo.id) {
+        console.log(id)
+        console.log(!photo.isFavorite)
+        return {
+          ...photo,
+          isFavorite: !photo.isFavorite,
+        };
+      }
+      return photo;
+    });
+
+    setAllPhotos(updatedArr);
+  }
+
   return (
-    <Context.Provider value={{ allPhotos }}>
+    <Context.Provider value={{ allPhotos, toggleFavorite }}>
       {/* shorthad for obj container a property and value of "allPhotos" */}
       {children}
     </Context.Provider>
