@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../Context";
+import PropTypes from "prop-types";
 
-export default function Image({ className, img }) {
+function Image({ className, img }) {
   const [hover, setHover] = useState(false);
   // Get the toggleFavorite function from context
   const { toggleFavorite } = useContext(Context);
@@ -34,3 +35,14 @@ export default function Image({ className, img }) {
     </div>
   );
 }
+
+Image.propTypes = {
+  className: PropTypes.string,
+  img: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    isFavorite:PropTypes.bool
+  }),
+};
+
+export default Image;
