@@ -37,7 +37,7 @@ function ContextProvider({ children }) {
 
   function removeFromCart(id) {
     // filters through the cart and returns an array with images that do not match the id passed in
-    setCartItems((prevCart) => prevCart.filter((item) => item.id === !id));
+    setCartItems((prevCart) => prevCart.filter((item) => item.id !== id));
   }
 
   return (
