@@ -1,8 +1,8 @@
-import React, {useContext} from "react";
+import React, {useState, useContext} from "react";
 import {Context} from "../Context";
 
 //destructure prop obj to get item
-function CartItem({item}) {
+function CartItem({item, cost}) {
   // get removeFromCart function from Context
   const {removeFromCart} = useContext(Context);
 
@@ -10,7 +10,7 @@ function CartItem({item}) {
     <div className="cart-item">
       <i className="ri-delete-bin-line" onClick={() => removeFromCart(item.id)}></i>
       <img src={item.url} width="130px" />
-      <p>$5.99</p>
+      <p>${cost}</p>
     </div>
   )
 }
