@@ -24,7 +24,7 @@ export default function Cart() {
     setTimeout(() => {
       setButtonText("Place Order");
       console.log("Order placed!");
-      setCartItems([])
+      setCartItems([]);
     }, 3000);
   }
 
@@ -34,7 +34,10 @@ export default function Cart() {
       {cartItemElements}
       <p className="total-cost">Total: {totalCostDisplay} </p>
       <div className="order-button">
-        <button onClick={() => placeOrder()}>{buttonText}</button>
+        {cartItems.length > 0 ? 
+          <button onClick={() => placeOrder()}>{buttonText}</button> :
+          <p>You have no items in your cart.</p>
+        }
       </div>
     </main>
   );
