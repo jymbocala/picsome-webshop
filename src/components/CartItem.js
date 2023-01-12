@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Context } from "../Context";
 import PropTypes from "prop-types";
 import useHover from "../hooks/useHover";
@@ -8,7 +8,7 @@ function CartItem({ item, cost }) {
   // get removeFromCart function from Context
   const { removeFromCart } = useContext(Context);
   // receive state and ref by calling useHover
-  const [hover, ref] = useHover()
+  const [hover, ref] = useHover();
 
   const iconClassName = hover ? "ri-delete-bin-fill" : "ri-delete-bin-line";
 
@@ -19,7 +19,7 @@ function CartItem({ item, cost }) {
         onClick={() => removeFromCart(item.id)}
         ref={ref}
       ></i>
-      <img src={item.url} width="130px" />
+      <img src={item.url} width="130px" alt="" />
       <p>${cost}</p>
     </div>
   );

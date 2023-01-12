@@ -48,7 +48,7 @@ function ContextProvider({ children }) {
         addToCart,
         removeFromCart,
         cartItems,
-        setCartItems
+        setCartItems,
       }}
     >
       {/* shorthad for obj container a property and value of "allPhotos" */}

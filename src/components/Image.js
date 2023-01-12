@@ -1,13 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Context } from "../Context";
 import PropTypes from "prop-types";
 import useHover from "../hooks/useHover";
 
 function Image({ className, img }) {
   // receive hover state and ref by calling useHover
-  const [hover, ref] = useHover()
+  const [hover, ref] = useHover();
   // Get the toggleFavorite function from context
-  const { toggleFavorite, addToCart, removeFromCart, cartItems } = useContext(Context);
+  const { toggleFavorite, addToCart, removeFromCart, cartItems } =
+    useContext(Context);
 
   const heartIcon = img.isFavorite ? (
     <i
@@ -26,7 +27,12 @@ function Image({ className, img }) {
   function cartIcon() {
     const isInCart = cartItems.find((item) => item.id === img.id);
     if (isInCart) {
-      return <i className="ri-shopping-cart-fill cart" onClick={() => removeFromCart(img.id)}></i>;
+      return (
+        <i
+          className="ri-shopping-cart-fill cart"
+          onClick={() => removeFromCart(img.id)}
+        ></i>
+      );
     } else if (hover) {
       return (
         <i
@@ -37,16 +43,11 @@ function Image({ className, img }) {
     }
   }
 
-  
-
   return (
-    <div
-      className={`${className} image-container`}
-      ref={ref}
-    >
+    <div className={`${className} image-container`} ref={ref}>
       {heartIcon}
       {cartIcon()}
-      <img src={img.url} className="image-grid" />
+      <img src={img.url} className="image-grid" alt="" />
     </div>
   );
 }
